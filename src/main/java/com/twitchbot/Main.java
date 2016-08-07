@@ -1,9 +1,12 @@
 package com.twitchbot;
 
 import org.jibble.pircbot.IrcException;
-import org.jibble.pircbot.NickAlreadyInUseException;
 
+import java.io.BufferedReader;
+import java.io.FileReader;
 import java.io.IOException;
+import java.text.SimpleDateFormat;
+import java.util.Date;
 
 /**
  * Created by JoshBeridon on 8/6/16.
@@ -13,38 +16,23 @@ public class Main {
             System.out.print("Hello world!");
         String host = "irc.chat.twitch.tv.";
         int port = 6667;
-        String pass = "oauth:kdxfewbfx8m5calno7a9wmfo9o1sr6";
+        String pass;
+        BufferedReader bufferedReader = new BufferedReader(new FileReader("secrets"));
+        StringBuilder stringBuilder = new StringBuilder();
+        String line = bufferedReader.readLine();
+        pass = line;
+        System.out.println(pass);
+
         String nick = "jberidon";
         String user = "jberidon";
         String real = "jberidon";
-/*
-        IRCConnection connection = new IRCConnection(host,port,pass,nick,user,real);
-        connection.addIRCEventListener(new ChatListener());
-        connection.setDaemon(true);
-        connection.setColors(false);
-        connection.setPong(true);
-        try{
-            connection.connect();
-            System.out.println("Try");
+        String channel = "#conquerosrs";
+        Date d1 = new Date();
+        SimpleDateFormat df = new SimpleDateFormat("MM/dd/YYYY HH:mm a");
+        String formattedDate = df.format(d1);
 
-        } catch (IOException exception){
-            System.out.println("Catch");
-            exception.printStackTrace();
-        }
-        System.out.println(connection.getName());
-        System.out.println(connection.getHost());
-        System.out.println(connection.isConnected());
-        System.out.println("Hello");
-        connection.doJoin("#conquerosrs",pass);
-        connection.send("Test");
-        connection.doJoin("#conquerosrs");
 
-        System.out.println(connection.getName());
-        System.out.println(connection.getHost());
-        System.out.println(connection.isConnected());
-        System.out.println(connection);
-        connection.send("test test test");
-        */
+
 
         MyBot myBot = new MyBot();
         System.out.println(myBot.getName());
@@ -59,5 +47,14 @@ public class Main {
         } catch (IrcException e) {
             e.printStackTrace();
         }
+        myBot.joinChannel(channel, pass);
+        myBot.sendMessage(channel, "Bot is up and running! "  + formattedDate);
+
+        myBot.getChannels();
+        System.out.println("sending raw linE");
+
+
+
+
     }
 }

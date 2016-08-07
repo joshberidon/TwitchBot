@@ -12,4 +12,19 @@ public class MyBot extends PircBot {
     MyBot(){
         this.setName(nick);
     }
+
+    @Override
+    protected void onMessage(String s, String s1, String s2, String s3, String s4) {
+        System.out.println(s);
+        System.out.println(s1);
+        System.out.println(s2);
+        System.out.println(s3);
+        System.out.println(s4);
+        if(s4.equals("!command")){
+            sendMessage(s,"you used a command!");
+        }
+
+
+        super.onMessage(s, s1, s2, s3, s4);
+    }
 }
