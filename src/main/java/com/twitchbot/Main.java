@@ -14,22 +14,12 @@ import java.util.Date;
 public class Main {
     public static void main (String [] args) throws IrcException, IOException {
             System.out.print("Hello world!");
-        String host = "irc.chat.twitch.tv.";
-        int port = 6667;
-        String pass;
-        BufferedReader bufferedReader = new BufferedReader(new FileReader("secrets"));
-        StringBuilder stringBuilder = new StringBuilder();
-        String line = bufferedReader.readLine();
-        pass = line;
-        System.out.println(pass);
 
-        String nick = "jberidon";
-        String user = "jberidon";
-        String real = "jberidon";
+        Utility.readPass();
+        System.out.println(Utility.pass);
+
         String channel = "#conquerosrs";
-        Date d1 = new Date();
-        SimpleDateFormat df = new SimpleDateFormat("MM/dd/YYYY HH:mm a");
-        String formattedDate = df.format(d1);
+
 
 
 
@@ -41,20 +31,19 @@ public class Main {
         }
         myBot.setVerbose(true);
         try {
-            myBot.connect(host,port,pass);
+            myBot.connect(Utility.host,Utility.port,Utility.pass);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (IrcException e) {
             e.printStackTrace();
         }
-        myBot.joinChannel(channel, pass);
-        myBot.sendMessage(channel, "Bot is up and running! "  + formattedDate);
+        myBot.joinChannel(channel, Utility.pass);
+        myBot.sendMessage(channel, "Bot is up and running! "  + Utility.getTime());
 
         myBot.getChannels();
         System.out.println("sending raw linE");
 
 
-
-
+        
     }
 }
