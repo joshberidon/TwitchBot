@@ -10,19 +10,23 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(String userCommand) {
+    public void execute(String userCommand) {//TODO check that command doesnt already exist, save command for next execution
         String newCommandName;
         String response;
-
-        newCommandName = userCommand.substring(5,userCommand.length());
-        response = newCommandName;
-        newCommandName = newCommandName.substring(0,newCommandName.indexOf(' '));
-        newCommandName = "!" + newCommandName;
-        System.out.println("This is the command " + newCommandName + "######");
-        response = response.substring(response.indexOf(' ') + 1 , response.length());
-        System.out.println("This is the response " + response);
-        Utility.addedCommands.add(new ResponseCommand(newCommandName, response));
-        myBot.sendMessage("Added new command: " + newCommandName);
+        myBot.sendMessage(userCommand.length());
+        if(userCommand.length()<=4){
+            myBot.sendMessage("To add a command, type \"!add <Command name> <What the command will say>\".");
+        } else {
+            newCommandName = userCommand.substring(5, userCommand.length());
+            response = newCommandName;
+            newCommandName = newCommandName.substring(0, newCommandName.indexOf(' '));
+            newCommandName = "!" + newCommandName;
+            System.out.println("This is the command " + newCommandName + "######");
+            response = response.substring(response.indexOf(' ') + 1, response.length());
+            System.out.println("This is the response " + response);
+            Utility.addedCommands.add(new ResponseCommand(newCommandName, response));
+            myBot.sendMessage("Added new command: " + newCommandName + ".");
+        }
     }
 
 
