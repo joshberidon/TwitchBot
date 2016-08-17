@@ -3,6 +3,7 @@ package com.twitchbot;
 /**
  * Created by JoshBeridon on 8/16/16.
  */
+
 public class AddCommand extends Command {
 
     public AddCommand() {
@@ -11,7 +12,7 @@ public class AddCommand extends Command {
     }
 
     @Override
-    public void execute(String userCommand) {//TODO check that command doesnt already exist, save command for next execution
+    public void execute(String userCommand) {
         String newCommandName;
         String response;
         if(userCommand.length()<=4){

@@ -6,6 +6,14 @@ import java.util.Collections;
 /**
  * Created by JoshBeridon on 8/16/16.
  */
+
+
+
+
+
+//TODO check that command doesn't already exist, save command for next execution
+//TODO save all the commands to a database
+//TODO add a cool down for all except moderator.
 public abstract class Command implements Comparable<String> {
 
     String command;
@@ -32,7 +40,7 @@ public abstract class Command implements Comparable<String> {
     public boolean validate(String userCommand){
         if(!command.startsWith("!"))
         command = "!" + command;
-        return userCommand.startsWith(command);
+        return userCommand.equals(command);
     }
     public String toString(){
         return command;
