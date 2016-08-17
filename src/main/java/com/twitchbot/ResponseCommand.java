@@ -8,6 +8,7 @@ public class ResponseCommand extends Command{
 
     public ResponseCommand(String command, String response) {
         super(command, response);
+        deleteable = true;
     }
 
     public void execute(String userCommand){

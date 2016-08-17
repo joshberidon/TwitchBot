@@ -14,10 +14,12 @@ import java.util.Collections;
 //TODO check that command doesn't already exist, save command for next execution
 //TODO save all the commands to a database
 //TODO add a cool down for all except moderator.
+//TODO be able to delete commands
 public abstract class Command implements Comparable<String> {
 
     String command;
     String response;
+    boolean deleteable = false;
     MyBot myBot = MyBot.getInstance();
     ArrayList<String> arguments;
     public Command(){
