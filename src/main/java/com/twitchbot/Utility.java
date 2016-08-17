@@ -15,7 +15,8 @@ public class Utility {
     public static String host = "irc.chat.twitch.tv.";
     public static int port = 6667;
     public static String pass;
-    public static String user = "jberidon";
+    public static String name = "jberidon";
+    public static String channel = "#conquerosrs";
 
 
     public static void readPass() throws IOException {

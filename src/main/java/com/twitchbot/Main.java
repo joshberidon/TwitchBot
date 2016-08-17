@@ -6,6 +6,7 @@ import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -13,18 +14,8 @@ import java.util.Date;
  */
 public class Main {
     public static void main (String [] args) throws IrcException, IOException {
-            System.out.print("Hello world!");
-
         Utility.readPass();
-        System.out.println(Utility.pass);
-
-        String channel = "#conquerosrs";
-
-
-
-
-
-        MyBot myBot = new MyBot();
+        MyBot myBot = MyBot.getInstance();
         System.out.println(myBot.getName());
         if (myBot.isConnected()){
             myBot.disconnect();
@@ -37,13 +28,11 @@ public class Main {
         } catch (IrcException e) {
             e.printStackTrace();
         }
-        myBot.joinChannel(channel, Utility.pass);
-        myBot.sendMessage(channel, "Bot is up and running! "  + Utility.getTime());
+        myBot.joinChannel(Utility.channel, Utility.pass);
+        myBot.sendMessage(Utility.channel, "Bot is up and running! "  + Utility.getTime());
 
         myBot.getChannels();
         System.out.println("sending raw linE");
 
-
-        
     }
 }
