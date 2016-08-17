@@ -12,6 +12,12 @@ public abstract class Command implements Comparable<String> {
     String response;
     MyBot myBot = MyBot.getInstance();
     ArrayList<String> arguments;
+    public Command(){
+    }
+    public Command(String command){
+        this.command = command;
+    }
+
     public Command(String command, String response){
         this.command = command;
         this.response = response;
@@ -22,9 +28,10 @@ public abstract class Command implements Comparable<String> {
         this.response = response;
     }
 
-    public abstract void execute();
+    public abstract void execute(String userCommand);
     public abstract String getCommandName();
     public abstract boolean validate(String userCommand);
+    public abstract String toString();
 
     @Override
     public int compareTo(String command) {

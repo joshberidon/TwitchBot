@@ -1,31 +1,31 @@
 package com.twitchbot;
 
-import java.util.ArrayList;
 
 /**
  * Created by JoshBeridon on 8/7/16.
  */
 public class ResponseCommand extends Command{
-    String commandName;
-    String response;
-    ArrayList <String> arguments;
 
     public ResponseCommand(String command, String response) {
         super(command, response);
     }
 
-    public void execute(){
+    public void execute(String userCommand){
         myBot.sendMessage(Utility.channel, response);
     }
 
     public String getCommandName(){
-        return commandName;
+        return command;
     }
+
 
     @Override
     public boolean validate(String userCommand) {
-        return userCommand.equals(commandName);
+        return userCommand.equals(command);
     }
 
-
+    @Override
+    public String toString() {
+        return "Response Command" + command;
+    }
 }

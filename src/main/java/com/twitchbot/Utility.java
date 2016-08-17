@@ -5,6 +5,7 @@ import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
 import java.text.SimpleDateFormat;
+import java.util.ArrayList;
 import java.util.Date;
 
 /**
@@ -17,6 +18,8 @@ public class Utility {
     public static String pass;
     public static String name = "jberidon";
     public static String channel = "#conquerosrs";
+    public static ArrayList<Command> commands = new ArrayList<Command>();
+    public static ArrayList<Command> addedCommands = new ArrayList<Command>();
 
 
     public static void readPass() throws IOException {

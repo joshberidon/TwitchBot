@@ -32,7 +32,8 @@ public class Main {
         myBot.sendMessage(Utility.channel, "Bot is up and running! "  + Utility.getTime());
 
         myBot.getChannels();
-        System.out.println("sending raw linE");
+        Utility.commands.add(new AddCommand());
+        System.out.println(Utility.commands.size());
 
     }
 }
