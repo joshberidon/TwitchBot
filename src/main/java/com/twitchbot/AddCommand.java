@@ -22,6 +22,7 @@ public class AddCommand extends Command {
         response = response.substring(response.indexOf(' ') + 1 , response.length());
         System.out.println("This is the response " + response);
         Utility.addedCommands.add(new ResponseCommand(newCommandName, response));
+        myBot.sendMessage("Added new command: " + newCommandName);
     }
 
 
