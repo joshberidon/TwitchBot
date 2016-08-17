@@ -14,10 +14,6 @@ public class ResponseCommand extends Command{
         myBot.sendMessage(Utility.channel, response);
     }
 
-    public String getCommandName(){
-        return command;
-    }
-
 
     @Override
     public boolean validate(String userCommand) {
@@ -26,6 +22,6 @@ public class ResponseCommand extends Command{
 
     @Override
     public String toString() {
-        return "Response Command" + command;
+        return command;
     }
 }

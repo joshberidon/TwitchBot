@@ -29,13 +29,18 @@ public abstract class Command implements Comparable<String> {
     }
 
     public abstract void execute(String userCommand);
-    public abstract String getCommandName();
-    public abstract boolean validate(String userCommand);
-    public abstract String toString();
+    public boolean validate(String userCommand){
+        if(!command.startsWith("!"))
+        command = "!" + command;
+        return userCommand.startsWith(command);
+    }
+    public String toString(){
+        return command;
+    }
 
     @Override
     public int compareTo(String command) {
         command = "!" + command;
-        return command.compareTo(getCommandName());
+        return command.compareTo(command);
     }
 }

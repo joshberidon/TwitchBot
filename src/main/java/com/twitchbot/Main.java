@@ -33,6 +33,7 @@ public class Main {
 
         myBot.getChannels();
         Utility.commands.add(new AddCommand());
+        Utility.commands.add(new CommandsCommand());
         System.out.println(Utility.commands.size());
 
     }
