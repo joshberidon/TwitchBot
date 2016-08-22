@@ -1,4 +1,4 @@
-package com.twitchbot;
+package com.twitchbot.IRCBot;
 
 import org.schwering.irc.lib.IRCEventListener;
 import org.schwering.irc.lib.IRCModeParser;

@@ -1,5 +1,7 @@
-package com.twitchbot;
+package com.twitchbot.Commands;
 
+
+import com.twitchbot.Utility;
 
 /**
  * Created by JoshBeridon on 8/7/16.

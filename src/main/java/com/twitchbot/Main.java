@@ -1,13 +1,11 @@
 package com.twitchbot;
 
+import com.twitchbot.Commands.AddCommand;
+import com.twitchbot.Commands.CommandsCommand;
+import com.twitchbot.IRCBot.MyBot;
 import org.jibble.pircbot.IrcException;
 
-import java.io.BufferedReader;
-import java.io.FileReader;
 import java.io.IOException;
-import java.text.SimpleDateFormat;
-import java.util.ArrayList;
-import java.util.Date;
 
 /**
  * Created by JoshBeridon on 8/6/16.

@@ -1,9 +1,8 @@
-package com.twitchbot;
+package com.twitchbot.IRCBot;
 
+import com.twitchbot.Commands.Command;
+import com.twitchbot.Utility;
 import org.jibble.pircbot.PircBot;
-
-import java.util.ArrayList;
-import java.util.ListIterator;
 
 /**
  * Created by JoshBeridon on 8/7/16.

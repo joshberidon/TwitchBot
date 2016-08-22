@@ -1,7 +1,8 @@
-package com.twitchbot;
+package com.twitchbot.Commands;
+
+import com.twitchbot.IRCBot.MyBot;
 
 import java.util.ArrayList;
-import java.util.Collections;
 
 /**
  * Created by JoshBeridon on 8/16/16.
@@ -21,9 +22,10 @@ public abstract class Command implements Comparable<String> {
     String response;
     boolean deleteable = false;
     MyBot myBot = MyBot.getInstance();
-    ArrayList<String> arguments;
+    String... arguments;
     public Command(){
     }
+
     public Command(String command){
         this.command = command;
     }
@@ -36,6 +38,7 @@ public abstract class Command implements Comparable<String> {
     public Command(String command, String response, String... Arguments) {
         this.command = command;
         this.response = response;
+        this.arguments = Arguments;
     }
 
     public abstract void execute(String userCommand);
