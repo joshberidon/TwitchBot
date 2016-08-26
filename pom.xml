@@ -13,6 +13,12 @@
             <artifactId>pircbot</artifactId>
             <version>1.5.0</version>
         </dependency>
-        
+        <!-- https://mvnrepository.com/artifact/mysql/mysql-connector-java -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>6.0.3</version>
+        </dependency>
+
     </dependencies>
 </project>

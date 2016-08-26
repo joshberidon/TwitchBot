@@ -22,7 +22,7 @@ public abstract class Command implements Comparable<String> {
     String response;
     boolean deleteable = false;
     MyBot myBot = MyBot.getInstance();
-    String... arguments;
+
     public Command(){
     }
 
@@ -33,12 +33,6 @@ public abstract class Command implements Comparable<String> {
     public Command(String command, String response){
         this.command = command;
         this.response = response;
-    }
-
-    public Command(String command, String response, String... Arguments) {
-        this.command = command;
-        this.response = response;
-        this.arguments = Arguments;
     }
 
     public abstract void execute(String userCommand);

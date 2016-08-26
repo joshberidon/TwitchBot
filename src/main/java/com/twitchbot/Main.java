@@ -11,7 +11,7 @@ import java.io.IOException;
  * Created by JoshBeridon on 8/6/16.
  */
 public class Main {
-    public static void main (String [] args) throws IrcException, IOException {
+    public static void main (String [] args) throws Exception {
         Utility.readPass();
         MyBot myBot = MyBot.getInstance();
         System.out.println(myBot.getName());
@@ -33,6 +33,14 @@ public class Main {
         Utility.commands.add(new AddCommand());
         Utility.commands.add(new CommandsCommand());
         System.out.println(Utility.commands.size());
+
+        SQL sql = new SQL();
+        //if database doesnt exist create it, otherwise just connect
+        sql.makeDatabase();
+        sql.dropTable();
+       // sql.connectDatabase();
+        sql.makeTable();
+
 
     }
 }
