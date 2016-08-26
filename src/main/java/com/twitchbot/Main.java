@@ -34,12 +34,13 @@ public class Main {
         Utility.commands.add(new CommandsCommand());
         System.out.println(Utility.commands.size());
 
-        SQL sql = new SQL();
+        SQL sql = SQL.getInstance();
         //if database doesnt exist create it, otherwise just connect
         sql.makeDatabase();
         sql.dropTable();
        // sql.connectDatabase();
         sql.makeTable();
+        sql.addCommand("Test", "This is the test!");
 
 
     }

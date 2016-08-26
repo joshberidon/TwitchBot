@@ -15,9 +15,21 @@ public class SQL {
     final String JDBC_DRIVER = "com.mysql.cj.jdbc.Driver";
     String databaseName = "TWITCH";
     String commandTable = "COMMANDS";
+    private int uniqueID = 0;
+    private static SQL sql = new SQL();
+
+    public static SQL getInstance(){
+        return sql;
+    }
+
+    private SQL() {
+
+    }
+
 
 
     public void makeDatabase() throws Exception {
+
 
         final String DB_URL = "jdbc:mysql://localhost/";
         try {
@@ -83,7 +95,7 @@ public class SQL {
             System.out.println("Connected to database");
             System.out.println("Creating table..");
             statement = connect.createStatement();
-            String sql = "CREATE TABLE REGISTRATION " +
+            String sql = "CREATE TABLE COMMANDS " +
                     "(id INTEGER not NULL, " +
                     " command VARCHAR(255), " +
                     " response VARCHAR(255), " +
@@ -110,7 +122,7 @@ public class SQL {
             System.out.println("Connected to database");
             System.out.println("Deleting table..");
             statement = connect.createStatement();
-            String sql = "DROP TABLE REGISTRATION";
+            String sql = "DROP TABLE COMMANDS";
 
             statement.executeUpdate(sql);
             System.out.println("Deleted table");
@@ -122,5 +134,29 @@ public class SQL {
             close();
         }
     }
+    public void addCommand(String commandName, String commandResponse){
+        final String DB_URL = "jdbc:mysql://localhost/" + databaseName;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Connecting..");
+            connect = DriverManager.getConnection(DB_URL, USER, PASS);
 
+            System.out.println("Connected to database");
+            System.out.println("Adding command..");
+            statement = connect.createStatement();
+            String sql = "INSERT INTO COMMANDS " +
+                    "VALUES (" + uniqueID + ", '" + commandName + "', '" + commandResponse + "')";
+            System.out.println(sql);
+            statement.executeUpdate(sql);
+            System.out.println("Command added");
+            uniqueID++;
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+    }
+     //TODO why can't I increment unique id here?
 }

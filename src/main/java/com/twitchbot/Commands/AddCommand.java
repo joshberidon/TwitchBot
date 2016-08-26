@@ -1,5 +1,6 @@
 package com.twitchbot.Commands;
 
+import com.twitchbot.SQL;
 import com.twitchbot.Utility;
 
 /**
@@ -7,6 +8,7 @@ import com.twitchbot.Utility;
  */
 
 public class AddCommand extends Command {
+    SQL sql = SQL.getInstance();
 
     public AddCommand() {
         System.out.println("added add command");
@@ -30,6 +32,7 @@ public class AddCommand extends Command {
             System.out.println("This is the response " + response);
             Utility.addedCommands.add(new ResponseCommand(newCommandName, response));
             myBot.sendMessage("Added new command: \"" + newCommandName + "\".");
+            sql.addCommand(newCommandName,response);
         }
     }
 
