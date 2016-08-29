@@ -5,7 +5,7 @@ import java.sql.*;
 /**
  * Created by JoshBeridon on 8/22/16.
  */
-public class SQL {
+public class SQL {//TODO make sure that the find and find response are doing what they are supposed to, efficiently
     private Connection connect = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;
@@ -99,7 +99,7 @@ public class SQL {
                     "(id INTEGER not NULL, " +
                     " command VARCHAR(255), " +
                     " response VARCHAR(255), " +
-                    " PRIMARY KEY ( id ))";
+                    " PRIMARY KEY ( command ))";
 
             statement.executeUpdate(sql);
             System.out.println("Created table");

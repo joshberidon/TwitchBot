@@ -1,6 +1,8 @@
 package com.twitchbot.IRCBot;
 
 import com.twitchbot.Commands.Command;
+import com.twitchbot.Commands.ResponseCommand;
+import com.twitchbot.SQL;
 import com.twitchbot.Utility;
 import org.jibble.pircbot.PircBot;
 
@@ -9,11 +11,10 @@ import org.jibble.pircbot.PircBot;
  */
 public class MyBot extends PircBot {
     private static MyBot myBot = new MyBot();
-
+    SQL sql = SQL.getInstance();
     public static MyBot getInstance(){
         return myBot;
     }
-
     private MyBot() {
         this.setName(Utility.name);
     }
@@ -30,18 +31,24 @@ public class MyBot extends PircBot {
             System.out.println(start);
             Command command = Utility.commands.get(start);
             System.out.println("All the commands are" + Utility.commands);
-            System.out.println("Comamnd we got is " + command);
+            System.out.println("Command we got is " + command);
             if(command!=null){
-                System.out.println("INside of command");
+                System.out.println("Inside of command");
                 if(command.validate(s4)){
                     command.execute(s4);
                 }
-            }
-            /*for (Command command : Utility.commands) {//TODO also has to search the database.............
-                if (command.validate(s4)) {
+            }else if(sql.findCommand(start)) {// is in database, we should cache it locally if it was called
+                System.out.println("Command is in database");
+                Utility.addedCommands.put(start,new ResponseCommand(start, sql.findCommandResponse(start)));
+                command = Utility.addedCommands.get(start);
+                System.out.println("All the commands are" + Utility.addedCommands);
+                if(command.validate(s4)){
                     command.execute(s4);
                 }
-            }*/
+            } else{
+                System.out.println("This was not a command");
+                //not a command
+            }
             Utility.commands.putAll(Utility.addedCommands);
             Utility.addedCommands.clear();
         } else{
