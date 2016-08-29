@@ -5,9 +5,11 @@ import com.twitchbot.Commands.Command;
 import java.io.BufferedReader;
 import java.io.FileReader;
 import java.io.IOException;
+import java.security.Key;
 import java.text.SimpleDateFormat;
 import java.util.ArrayList;
 import java.util.Date;
+import java.util.HashMap;
 
 /**
  * Created by JoshBeridon on 8/7/16.
@@ -19,8 +21,11 @@ public class Utility {
     public static String pass;
     public static String name = "jberidon";
     public static String channel = "#conquerosrs";
-    public static ArrayList<Command> commands = new ArrayList<Command>();
-    public static ArrayList<Command> addedCommands = new ArrayList<Command>();
+   // public static ArrayList<Command> commands = new ArrayList<Command>();
+    //public static ArrayList<Command> addedCommands = new ArrayList<Command>();
+    public static HashMap<String, Command> addedCommands = new HashMap<String, Command>();
+    public static HashMap<String, Command> commands = new HashMap<String, Command>();
+
 
 
     public static void readPass() throws IOException {

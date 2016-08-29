@@ -7,7 +7,7 @@ import com.twitchbot.Utility;
  * Created by JoshBeridon on 8/16/16.
  */
 
-public class AddCommand extends Command {
+public class AddCommand extends Command {//TODO make sure that it has valid arguments 
     SQL sql = SQL.getInstance();
 
     public AddCommand() {
@@ -30,7 +30,7 @@ public class AddCommand extends Command {
             System.out.println("This is the command " + newCommandName + "######");
             response = response.substring(response.indexOf(' ') + 1, response.length());
             System.out.println("This is the response " + response);
-            Utility.addedCommands.add(new ResponseCommand(newCommandName, response));
+            Utility.addedCommands.put(newCommandName, new ResponseCommand(newCommandName, response));
             myBot.sendMessage("Added new command: \"" + newCommandName + "\".");
             sql.addCommand(newCommandName,response);
         }

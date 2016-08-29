@@ -30,17 +30,15 @@ public class Main {
         myBot.sendMessage(Utility.channel, "Bot is up and running! "  + Utility.getTime());
 
         myBot.getChannels();
-        Utility.commands.add(new AddCommand());
-        Utility.commands.add(new CommandsCommand());
+        Utility.commands.put("!add",new AddCommand());
+        Utility.commands.put("!commands",new CommandsCommand());
         System.out.println(Utility.commands.size());
 
         SQL sql = SQL.getInstance();
         //if database doesnt exist create it, otherwise just connect
-        sql.makeDatabase();
-        sql.dropTable();
-       // sql.connectDatabase();
-        sql.makeTable();
-        sql.addCommand("Test", "This is the test!");
+        //sql.makeDatabase();
+        //sql.dropTable();
+        //sql.makeTable();
 
 
     }

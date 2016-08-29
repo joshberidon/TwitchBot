@@ -26,13 +26,23 @@ public class MyBot extends PircBot {
         //s is channel, s1 is , s2 is , s3 is ,s4 is line
         if(!s2.equals(Utility.name)) {
             //myBot.sendMessage(Utility.channel, "We recieved your message, " + s4 + ", from  " + s2);
-            for (Command command : Utility.commands) {
-                if (command.validate(s4)) {
+            String start = s4.split(" ")[0];
+            System.out.println(start);
+            Command command = Utility.commands.get(start);
+            System.out.println("All the commands are" + Utility.commands);
+            System.out.println("Comamnd we got is " + command);
+            if(command!=null){
+                System.out.println("INside of command");
+                if(command.validate(s4)){
                     command.execute(s4);
                 }
             }
-
-            Utility.commands.addAll(Utility.addedCommands);
+            /*for (Command command : Utility.commands) {//TODO also has to search the database.............
+                if (command.validate(s4)) {
+                    command.execute(s4);
+                }
+            }*/
+            Utility.commands.putAll(Utility.addedCommands);
             Utility.addedCommands.clear();
         } else{
             System.out.println("WE SENT THE MESSAGE");

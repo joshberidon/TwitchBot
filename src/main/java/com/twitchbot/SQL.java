@@ -23,7 +23,7 @@ public class SQL {
     }
 
     private SQL() {
-
+        getUniqueID();
     }
 
 
@@ -144,12 +144,12 @@ public class SQL {
             System.out.println("Connected to database");
             System.out.println("Adding command..");
             statement = connect.createStatement();
-            String sql = "INSERT INTO COMMANDS " +
-                    "VALUES (" + uniqueID + ", '" + commandName + "', '" + commandResponse + "')";
+            String sql = "INSERT INTO " + commandTable +
+                    " VALUES (" + uniqueID + ", '" + commandName + "', '" + commandResponse + "')";
             System.out.println(sql);
             statement.executeUpdate(sql);
             System.out.println("Command added");
-            uniqueID++;
+
         } catch (SQLException e) {
             e.printStackTrace();
         } catch (Exception e) {
@@ -157,6 +157,79 @@ public class SQL {
         } finally {
             close();
         }
+        uniqueID++;
     }
-     //TODO why can't I increment unique id here?
+    public int getUniqueID(){
+        //TODO get unique id from size of tables + 1
+        return 0;
+    }
+
+    public String findCommandResponse(String userCommand) {
+        String commandResponse = null;
+        final String DB_URL = "jdbc:mysql://localhost/" + databaseName;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Connecting..");
+            connect = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            System.out.println("Connected to database");
+            System.out.println("Creating Statement..");
+            statement = connect.createStatement();
+            String sql = "SELECT id, command, response FROM " + commandTable;
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String command = resultSet.getString("command");
+                String response = resultSet.getString("response");
+                System.out.println(id);
+                System.out.println("USER COMMAND IS " + command);
+                if(command.equals(userCommand)){
+                    System.out.println("THEY MATCH!");
+                    commandResponse = response;
+                }
+            }
+            System.out.println("Created table");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        return commandResponse;
+    }
+    public Boolean findCommand(String userCommand) {
+        Boolean hasCommand = false;
+        final String DB_URL = "jdbc:mysql://localhost/" + databaseName;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Connecting..");
+            connect = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            System.out.println("Connected to database");
+            System.out.println("Creating Statement..");
+            statement = connect.createStatement();
+            String sql = "SELECT id, command, response FROM " + commandTable;
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String command = resultSet.getString("command");
+                String response = resultSet.getString("response");
+                System.out.println(id);
+                System.out.println("USER COMMAND IS " + command);
+                if(command.equals(userCommand)){
+                    System.out.println("THEY MATCH!");
+                    hasCommand = true;
+                }
+            }
+            System.out.println("Created table");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+        return hasCommand;
+    }
 }
