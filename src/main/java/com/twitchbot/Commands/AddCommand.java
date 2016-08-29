@@ -7,7 +7,7 @@ import com.twitchbot.Utility;
  * Created by JoshBeridon on 8/16/16.
  */
 
-public class AddCommand extends Command {//TODO make sure that it has valid arguments
+public class AddCommand extends Command {
     SQL sql = SQL.getInstance();
 
     public AddCommand() {

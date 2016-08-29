@@ -2,6 +2,7 @@ package com.twitchbot;
 
 import com.twitchbot.Commands.AddCommand;
 import com.twitchbot.Commands.CommandsCommand;
+import com.twitchbot.Commands.DeleteCommand;
 import com.twitchbot.IRCBot.MyBot;
 import org.jibble.pircbot.IrcException;
 
@@ -30,8 +31,9 @@ public class Main {
         myBot.sendMessage(Utility.channel, "Bot is up and running! "  + Utility.getTime());
 
         myBot.getChannels();
-        Utility.commands.put("!add",new AddCommand());
+        Utility.commands.put("!add", new AddCommand());
         Utility.commands.put("!commands",new CommandsCommand());
+        Utility.commands.put("!delete",new DeleteCommand());
         System.out.println(Utility.commands.size());
 
         SQL sql = SQL.getInstance();

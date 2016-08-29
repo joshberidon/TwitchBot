@@ -232,4 +232,29 @@ public class SQL {//TODO make sure that the find and find response are doing wha
         }
         return hasCommand;
     }
+
+    public void removeCommand(String userCommand) {
+        final String DB_URL = "jdbc:mysql://localhost/" + databaseName;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Connecting..");
+            connect = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            System.out.println("Connected to database");
+            System.out.println("Creating Statement..");
+            statement = connect.createStatement();
+
+            String sql =  "DELETE FROM " + commandTable + " WHERE command=\'" + userCommand + "\';";
+            System.out.println(sql);
+            statement.executeUpdate(sql);
+
+            System.out.println("Deleted command");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+    }
 }
