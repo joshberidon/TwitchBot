@@ -7,7 +7,7 @@ import com.twitchbot.Utility;
  * Created by JoshBeridon on 8/16/16.
  */
 
-public class AddCommand extends Command {//TODO make sure that it has valid arguments 
+public class AddCommand extends Command {//TODO make sure that it has valid arguments
     SQL sql = SQL.getInstance();
 
     public AddCommand() {
@@ -20,19 +20,22 @@ public class AddCommand extends Command {//TODO make sure that it has valid argu
         String newCommandName;
         String response;
         if(userCommand.length()<=4){
-            myBot.sendMessage("To add a command, type \"!add <Command name> <What the command will say>\".");
-        }
-        else {
+            error("To add a command, type \"!add <Command name> <What the command will say>\".");
+        } else {
             newCommandName = userCommand.substring(5, userCommand.length());
             response = newCommandName;
             newCommandName = newCommandName.substring(0, newCommandName.indexOf(' '));
             newCommandName = "!" + newCommandName;
             System.out.println("This is the command " + newCommandName + "######");
-            response = response.substring(response.indexOf(' ') + 1, response.length());
-            System.out.println("This is the response " + response);
-            Utility.addedCommands.put(newCommandName, new ResponseCommand(newCommandName, response));
-            myBot.sendMessage("Added new command: \"" + newCommandName + "\".");
-            sql.addCommand(newCommandName,response);
+            if (sql.findCommand(newCommandName) || Utility.commands.get(newCommandName)!=null) {
+                error("This command already exists!");
+            } else {
+                response = response.substring(response.indexOf(' ') + 1, response.length());
+                System.out.println("This is the response " + response);
+                Utility.addedCommands.put(newCommandName, new ResponseCommand(newCommandName, response));
+                myBot.sendMessage("Added new command: \"" + newCommandName + "\".");
+                sql.addCommand(newCommandName, response);
+            }
         }
     }
 
@@ -45,5 +48,7 @@ public class AddCommand extends Command {//TODO make sure that it has valid argu
     public String toString() {
         return command;
     }
+
+
 
 }

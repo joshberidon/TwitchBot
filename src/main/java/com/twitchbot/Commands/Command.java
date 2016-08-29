@@ -50,4 +50,13 @@ public abstract class Command implements Comparable<String> {
         command = "!" + command;
         return command.compareTo(command);
     }
+
+    public String error(String response){
+        if(response!=null){
+            myBot.sendMessage(response);
+            return response;
+        }
+        myBot.sendMessage("There was an error");
+        return "There was an error";
+    }
 }
