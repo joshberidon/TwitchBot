@@ -9,6 +9,7 @@ import java.util.HashMap;
  * Created by JoshBeridon on 8/22/16.
  */
 public class SQL {//TODO make sure that the find and find response are doing what they are supposed to, efficiently
+    //TODO update table to add channel, user, remove id
     private Connection connect = null;
     private Statement statement = null;
     private PreparedStatement preparedStatement = null;

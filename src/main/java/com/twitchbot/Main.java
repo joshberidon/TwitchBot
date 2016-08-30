@@ -11,10 +11,10 @@ import java.io.IOException;
 /**
  * Created by JoshBeridon on 8/6/16.
  */
-public class Main {
+public class Main {//TODO update command?
     public static void main (String [] args) throws Exception {
         Utility.readPass();
-        MyBot myBot = MyBot.getInstance();
+        final MyBot myBot = MyBot.getInstance();
         System.out.println(myBot.getName());
         if (myBot.isConnected()){
             myBot.disconnect();
@@ -41,6 +41,13 @@ public class Main {
         //sql.makeDatabase();
         //sql.dropTable();
         //sql.makeTable();
+
+        Runtime.getRuntime().addShutdownHook(new Thread(new Runnable() {
+            public void run() {
+                myBot.sendMessage("Turning off the bot! " + Utility.getTime());
+            }
+        }, "Shutdown-thread"));
+
 
 
     }
