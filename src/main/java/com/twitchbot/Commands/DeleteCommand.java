@@ -25,7 +25,6 @@ public class DeleteCommand extends Command {
         }
         if(sql.findCommand(arguments[1])){
             sql.removeCommand(arguments[1]);
-            myBot.sendMessage("Command deleted!");
         }
         if(Utility.commands.get(arguments[1]) instanceof ResponseCommand){
             myBot.sendMessage("Command deleted!");
