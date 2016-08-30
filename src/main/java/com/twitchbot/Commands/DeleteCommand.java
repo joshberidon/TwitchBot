@@ -26,7 +26,8 @@ public class DeleteCommand extends Command {
         if(sql.findCommand(arguments[1])){
             sql.removeCommand(arguments[1]);
         }
-
+        System.out.println("Argument 0" + arguments[1]);
+        Utility.commands.remove(arguments[1]);
     }
 
     @Override public boolean validate(String usercommand){
@@ -35,6 +36,7 @@ public class DeleteCommand extends Command {
             System.out.print(Arrays.toString(arguments));
             if(arguments.length==2){
                 System.out.println("Delete it!");
+                myBot.sendMessage("Command deleted!");
 
                 return true;
             }

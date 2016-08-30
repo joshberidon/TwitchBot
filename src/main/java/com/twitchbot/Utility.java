@@ -1,6 +1,7 @@
 package com.twitchbot;
 
 import com.twitchbot.Commands.Command;
+import com.twitchbot.Commands.ResponseCommand;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
@@ -21,11 +22,11 @@ public class Utility {
     public static String pass;
     public static String name = "jberidon";
     public static String channel = "#conquerosrs";
+    private static SQL sql = SQL.getInstance();
    // public static ArrayList<Command> commands = new ArrayList<Command>();
     //public static ArrayList<Command> addedCommands = new ArrayList<Command>();
     public static HashMap<String, Command> addedCommands = new HashMap<String, Command>();
     public static HashMap<String, Command> commands = new HashMap<String, Command>();
-
 
 
     public static void readPass() throws IOException {
@@ -42,4 +43,11 @@ public class Utility {
         return formattedDate;
     }
 
+    public static void getAllCommands() {
+           sql.getCommands();
+    }
+
+    public static void addResponseCommand(String command, String response){
+        commands.put(command,new ResponseCommand(command,response));
+    }
 }

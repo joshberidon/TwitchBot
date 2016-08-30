@@ -32,7 +32,7 @@ public class AddCommand extends Command {
             } else {
                 response = response.substring(response.indexOf(' ') + 1, response.length());
                 System.out.println("This is the response " + response);
-                Utility.addedCommands.put(newCommandName, new ResponseCommand(newCommandName, response));
+                Utility.addResponseCommand(newCommandName,response);
                 myBot.sendMessage("Added new command: \"" + newCommandName + "\".");
                 sql.addCommand(newCommandName, response);
             }

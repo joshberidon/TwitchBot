@@ -1,6 +1,9 @@
 package com.twitchbot;
 
+import com.twitchbot.Commands.Command;
+
 import java.sql.*;
+import java.util.HashMap;
 
 /**
  * Created by JoshBeridon on 8/22/16.
@@ -17,6 +20,7 @@ public class SQL {//TODO make sure that the find and find response are doing wha
     String commandTable = "COMMANDS";
     private int uniqueID = 0;
     private static SQL sql = new SQL();
+    private HashMap<String, Command> commands;
 
     public static SQL getInstance(){
         return sql;
@@ -257,4 +261,35 @@ public class SQL {//TODO make sure that the find and find response are doing wha
             close();
         }
     }
+
+    public HashMap<String, Command> getCommands() {
+        final String DB_URL = "jdbc:mysql://localhost/" + databaseName;
+        try {
+            Class.forName("com.mysql.cj.jdbc.Driver");
+            System.out.println("Connecting..");
+            connect = DriverManager.getConnection(DB_URL, USER, PASS);
+
+            System.out.println("Connected to database");
+            System.out.println("Creating Statement..");
+            statement = connect.createStatement();
+            String sql = "SELECT id, command, response FROM " + commandTable;
+            resultSet = statement.executeQuery(sql);
+            while(resultSet.next()){
+                int id = resultSet.getInt("id");
+                String command = resultSet.getString("command");
+                String response = resultSet.getString("response");
+                Utility.addResponseCommand(command,response);
+            }
+            System.out.println("Grabbed commands");
+        } catch (SQLException e) {
+            e.printStackTrace();
+        } catch (Exception e) {
+            e.printStackTrace();
+        } finally {
+            close();
+        }
+
+        return commands;
+    }
+
 }
